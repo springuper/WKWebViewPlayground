@@ -7,14 +7,24 @@
 //
 
 import UIKit
+import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WKNavigationDelegate {
+    @IBOutlet weak var webview: WKWebView!
 
+    override func loadView() {
+        webview = WKWebView()
+        webview.navigationDelegate = self
+        view = webview
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let url = URL(string: "https://web-1.staging-public.tubi.io/webview/content/428736/everybody_hates_keisha")!
+        // let url = URL(string: "https://google.com")!
+        webview.load(URLRequest(url: url))
+        webview.allowsBackForwardNavigationGestures = true
     }
-
-
 }
 
