@@ -13,7 +13,10 @@ class ViewController: UIViewController, WKNavigationDelegate {
     @IBOutlet weak var webview: WKWebView!
 
     override func loadView() {
-        webview = WKWebView()
+        let configuration = WKWebViewConfiguration()
+        configuration.allowsInlineMediaPlayback = false
+        configuration.mediaTypesRequiringUserActionForPlayback = []
+        webview = WKWebView(frame: .zero, configuration: configuration)
         webview.navigationDelegate = self
         view = webview
     }
